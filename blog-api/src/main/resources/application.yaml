@@ -1,0 +1,34 @@
+server:
+  # 项目端口
+  port: 8888
+  servlet:
+    application-display-name: run_blog
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=UTF-8&serverTimeZone=UTC
+    username: # 数据库名称
+    password: # 密码
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: # redisip地址
+    port: 6379    # 端口
+    password: # 有密码则配置
+  servlet:
+    # 设置上传文件大小限制：单个最大5MB，一次性最大30MB
+    multipart:
+      max-request-size: 30MB
+      max-file-size: 5MB
+
+mybatis-plus:
+  # 给pojo包下的实体类起别名
+  type-aliases-package: com.run.blog.dao.pojo
+  configuration:
+    # 开启数据库字段名下划线和驼峰自动转换
+    map-underscore-to-camel-case: true
+    # MybatisPlus输出SQL到控制台
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      # 给表配置一个前缀，SQL中会自动加上此前缀
+      table-prefix: blog_
